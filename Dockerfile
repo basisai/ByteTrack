@@ -24,7 +24,7 @@ RUN git clone https://github.com/ifzhang/ByteTrack \
     && git checkout 8d52fbdf9cd03757d8dd02c0631e526d164bd726 \
     && mkdir -p YOLOX_outputs/yolox_x_mix_det/track_vis \
     && sed -i 's/torch>=1.7/torch==1.9.1+cu111/g' requirements.txt \
-    && sed -i 's/torchvision==0.10.0/torchvision==0.10.1+cu111/g' requirements.txt \
+    && sed -i 's/torchvision>=0.10.0/torchvision==0.10.1+cu111/g' requirements.txt \
     && sed -i "s/'cuda'/0/g" tools/demo_track.py \
     && pip3 install pip --upgrade \
     && pip3 install -r requirements.txt -f https://download.pytorch.org/whl/torch_stable.html \

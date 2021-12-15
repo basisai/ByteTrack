@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/tensorrt:21.09-py3
+FROM nvcr.io/nvidia/tensorrt:21.10-py3
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG USERNAME=user
@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN git clone https://github.com/ifzhang/ByteTrack \
     && cd ByteTrack \
-    && git checkout 3434c5e8bc6a5ae8ad530528ba8d9a431967f237 \
+    && git checkout 8d52fbdf9cd03757d8dd02c0631e526d164bd726 \
     && mkdir -p YOLOX_outputs/yolox_x_mix_det/track_vis \
     && sed -i 's/torch>=1.7/torch==1.9.1+cu111/g' requirements.txt \
     && sed -i 's/torchvision==0.10.0/torchvision==0.10.1+cu111/g' requirements.txt \
@@ -51,3 +51,5 @@ RUN echo "root:root" | chpasswd \
 USER ${USERNAME}
 RUN sudo chown -R ${USERNAME}:${USERNAME} ${WORKDIR}
 WORKDIR ${WORKDIR}
+
+COPY pretrained .
